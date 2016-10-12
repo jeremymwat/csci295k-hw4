@@ -51,16 +51,16 @@ with open("test.txt", "r") as train_file:
 inpt = tf.placeholder(tf.int32, [None])
 outpt = tf.placeholder(tf.int32, [None])
 
-E = tf.Variable(tf.random_uniform([vocabsz, embedsz], -1.0, 1.0))
+E = tf.Variable(tf.truncated_normal([vocabsz, embedsz], stddev=0.1))
 
 embd = tf.nn.embedding_lookup(E,inpt)
 
 hsize = 31
 
-w1 = tf.Variable(tf.random_uniform([embedsz, hsize], -1.0, 1.0))
+w1 = tf.Variable(tf.truncated_normal([embedsz, hsize], stddev=0.1))
 b1 = tf.Variable(tf.zeros([hsize]))
 
-w2 = tf.Variable(tf.random_uniform([hsize,vocabsz],  -1.0, 1.0))
+w2 = tf.Variable(tf.truncated_normal([hsize,vocabsz],  stddev=0.1))
 b2 = tf.Variable(tf.zeros([vocabsz]))
 
 h1 = tf.nn.relu(tf.matmul(embd, w1)+b1)
