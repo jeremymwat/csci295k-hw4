@@ -51,7 +51,7 @@ with open("test.txt", "r") as train_file:
 inpt = tf.placeholder(tf.int32, [None])
 outpt = tf.placeholder(tf.int32, [None])
 
-E = tf.Variable(tf.truncated_normal([vocabsz, embedsz], stddev=0.1))
+E = tf.Variable(tf.random_uniform([vocabsz, embedsz], -1.0, 1.0))
 
 embd = tf.nn.embedding_lookup(E,inpt)
 
